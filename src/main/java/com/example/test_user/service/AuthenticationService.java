@@ -231,7 +231,7 @@ public class AuthenticationService {
     public LoginResponse<UserResponse> refreshToken(HttpServletRequest request, HttpServletResponse response) {
         try {
             Cookie refreshTokenCookie = WebUtils.getCookie(request, "refresh_token");
-            log.warn(" refresh token " + refreshTokenCookie);
+            log.warn(" refresh token " + refreshTokenCookie.getValue());
             if (refreshTokenCookie == null) {
                 throw new RuntimeException("Không tìm thấy Refresh Token trong cookie!");
             }

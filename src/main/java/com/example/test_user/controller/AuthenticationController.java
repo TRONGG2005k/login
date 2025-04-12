@@ -57,8 +57,9 @@ public class AuthenticationController {
 
     @PostMapping("/refresh-token")
     ApiResponse<LoginResponse<UserResponse>> refreshToken(HttpServletRequest request, HttpServletResponse response) {
-        var response1 = authenticationService.refreshToken(request, response);
         System.out.println("📌 Backend nhận yêu cầu refresh token từ frontend");
+        var response1 = authenticationService.refreshToken(request, response);
+
         return ApiResponse.<LoginResponse<UserResponse>>builder()
                 .success(true)
                 .message("success")
