@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: test-user-app
+    env: docker
+    dockerfilePath: Dockerfile
+    branch: main
+    plan: free
