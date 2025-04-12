@@ -70,10 +70,10 @@ public class AuthenticationService {
 
         Cookie refreshTokenCookie  = new Cookie("refresh_token", refreshToken);
         refreshTokenCookie.setHttpOnly(true);
-        refreshTokenCookie.setSecure(false);
+        refreshTokenCookie.setSecure(true);
         refreshTokenCookie.setPath("/");
         refreshTokenCookie.setMaxAge(7 * 24 * 60 * 60); // 7 ngày
-        refreshTokenCookie.setAttribute("SameSite", "Strict");
+        refreshTokenCookie.setAttribute("SameSite", "None");
         response.addCookie(refreshTokenCookie);
 
         var userResponse = UserResponse.builder()
@@ -261,9 +261,10 @@ public class AuthenticationService {
             // Cập nhật refresh token vào cookie
             Cookie newRefreshTokenCookie = new Cookie("refresh_token", newRefreshToken);
             newRefreshTokenCookie.setHttpOnly(true);
-            newRefreshTokenCookie.setSecure(false);
+            newRefreshTokenCookie.setSecure(true);
             newRefreshTokenCookie.setPath("/");
             newRefreshTokenCookie.setMaxAge(7 * 24 * 60 * 60);
+            refreshTokenCookie.setAttribute("SameSite", "None");
             response.addCookie(newRefreshTokenCookie);
 
             // Trả về access token mới
