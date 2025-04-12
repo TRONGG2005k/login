@@ -257,7 +257,7 @@ public class AuthenticationService {
             // Tạo token mới
             String newAccessToken = generateToken(user, ACCESS_TOKEN_EXPIRATION, false);
             String newRefreshToken = generateToken(user, REFRESH_TOKEN_EXPIRATION, true);
-
+            log.warn("refresh token mới " + newRefreshToken);
             // Cập nhật refresh token vào cookie
             Cookie newRefreshTokenCookie = new Cookie("refresh_token", newRefreshToken);
             newRefreshTokenCookie.setHttpOnly(true);
