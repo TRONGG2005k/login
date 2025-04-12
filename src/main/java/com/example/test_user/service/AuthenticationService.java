@@ -17,6 +17,7 @@ import com.nimbusds.jwt.SignedJWT;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,6 +30,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.UUID;
 
+@Slf4j
 @Service
 public class AuthenticationService {
     @Autowired
@@ -165,6 +167,7 @@ public class AuthenticationService {
         try {
             // Lấy Refresh Token từ cookie
             Cookie refreshTokenCookie = WebUtils.getCookie(request, "refresh_token");
+
             if (refreshTokenCookie == null) {
                 return "Không tìm thấy Refresh Token!";
             }
@@ -228,6 +231,7 @@ public class AuthenticationService {
     public LoginResponse<UserResponse> refreshToken(HttpServletRequest request, HttpServletResponse response) {
         try {
             Cookie refreshTokenCookie = WebUtils.getCookie(request, "refresh_token");
+            log.info(" refresh token " + refreshTokenCookie);
             if (refreshTokenCookie == null) {
                 throw new RuntimeException("Không tìm thấy Refresh Token trong cookie!");
             }
