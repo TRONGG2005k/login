@@ -264,7 +264,7 @@ public class AuthenticationService {
             newRefreshTokenCookie.setSecure(true);
             newRefreshTokenCookie.setPath("/");
             newRefreshTokenCookie.setMaxAge(7 * 24 * 60 * 60);
-            refreshTokenCookie.setAttribute("SameSite", "None");
+            newRefreshTokenCookie.setAttribute("SameSite", "None");
             response.addCookie(newRefreshTokenCookie);
 
             // Trả về access token mới
